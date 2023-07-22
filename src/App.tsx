@@ -1,16 +1,16 @@
 import "./App.css";
-import { Card, Button } from "@mui/material";
+import NoteList from "./components/NoteList";
+import Bar from "./components/Bar";
+import NoteEditor from "./components/NoteEditor";
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
-      <Card variant="outlined">
-        <h1 className="bg-blue-500 text-white">Note</h1>
-        <p>Some Lorem</p>
-        <Button variant="contained">OK</Button>
-      </Card>
+      <Bar />
+      <NoteList />
+      <NoteEditor />
     </div>
   );
-}
+};
 
 export default App;
