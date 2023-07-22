@@ -12,44 +12,25 @@ interface NoteListState {
 }
 
 const initialState: NoteListState = {
-  notes: [
-    {
-      id: "1",
-      content:
-        "В этом примере, мы создали компонент NotesList, который принимает дочерние элементы (children) в качестве пропсов. Дочерние элементы будут элементами списка заметок. Мы обернули Paper компонент от Material-UI в Box, чтобы добавить внутренние отступы к контейнеру и сделать его более структурированным.",
-      tags: ["1"],
-    },
-    {
-      id: "2",
-      content:
-        "В этом примере, мы создали компонент NotesList, который принимает дочерние элементы (children) в качестве пропсов. Дочерние элементы будут элементами списка заметок.",
-      tags: ["2"],
-    },
-    {
-      id: "3",
-      content: "В этом примере, мы создали компонент NotesList.",
-      tags: ["3"],
-    },
-  ],
+  notes: [],
 };
 
 const noteListSlice = createSlice({
   name: "noteList",
   initialState: initialState,
   reducers: {
-    addNote: (
-      state,
-      action: PayloadAction<{ content: string; tags: string[] }>
-    ) => {
-      state.notes.push({ id: uuidv4(), ...action.payload });
+    addNote: (state, action: PayloadAction<{ content: string; tags: string[] }>) => {
+      const newNote = { ...action.payload, id: uuidv4() };
+      state.notes = [newNote, ...state.notes];
     },
     updateNote: (state, action: PayloadAction<Note>) => {
       const { id, content, tags } = action.payload;
-      const searchNote = state.notes.find((note) => note.id === id);
-      if (searchNote) {
-        searchNote.content = content;
-        searchNote.tags = tags;
-      }
+      state.notes = state.notes.map((note) => {
+        if (note.id === id) {
+          return { ...note, content: content, tags: tags };
+        }
+        return note;
+      });
     },
     deleteNote: (state, action: PayloadAction<string>) => {
       state.notes = state.notes.filter((note) => note.id !== action.payload);

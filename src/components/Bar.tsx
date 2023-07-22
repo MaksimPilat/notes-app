@@ -17,23 +17,10 @@ export default function Bar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Notes
           </Typography>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
+          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <Tune />
           </IconButton>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 0 }}
-            onClick={onAdd}
-          >
+          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 0 }} onClick={onAdd}>
             <Add />
           </IconButton>
         </Toolbar>

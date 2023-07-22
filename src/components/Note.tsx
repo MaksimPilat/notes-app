@@ -1,29 +1,22 @@
-import { Box, Card, Typography } from "@mui/material";
+import { Box, Card } from "@mui/material";
 import OptionMenu from "./OptionMenu";
 import { Edit, Delete } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
-import {
-  updateNote,
-  deleteNote,
-  Note as NoteType,
-} from "../redux/slices/noteListSlice";
+import { deleteNote, Note as NoteType } from "../redux/slices/noteListSlice";
+import { changeNoteEditorContent, setNoteId, toggleNoteEditorVisibility } from "../redux/slices/noteEditorSlice";
+import HighlightTags from "./HighlightTags";
 
 export default function Note({ id, content, tags }: NoteType) {
   const dispatch = useDispatch();
 
   const onEdit = () => {
-    const newNote = {
-      id: id,
-      content: "123",
-      tags: tags,
-    };
-    dispatch(updateNote(newNote));
-    console.log("Edit");
+    dispatch(changeNoteEditorContent(content));
+    dispatch(setNoteId(id));
+    dispatch(toggleNoteEditorVisibility());
   };
 
   const onDelete = () => {
     dispatch(deleteNote(id));
-    console.log("Delete");
   };
 
   return (
@@ -37,7 +30,7 @@ export default function Note({ id, content, tags }: NoteType) {
         gap: "20px",
       }}
     >
-      <Typography>{content}</Typography>
+      <HighlightTags>{content}</HighlightTags>
       <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
         <OptionMenu
           options={[

@@ -1,7 +1,3 @@
-interface Props {
-  tags: string[];
-}
-
-export default function TagFilter({ tags }: Props) {
+export default function TagFilter() {
   return <div>TagFilter</div>;
 }

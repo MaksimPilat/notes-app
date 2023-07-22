@@ -1,3 +1,7 @@
+:root {
+  --blue: #1976d2;
+}
+
 .App {
   max-width: 1200px;
   padding: 20px;
