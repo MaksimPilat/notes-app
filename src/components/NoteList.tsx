@@ -26,16 +26,17 @@ export default function NoteList() {
 
   return (
     <Box marginTop="30px">
-      <Box display="flex" flexWrap="wrap" gap="5px" marginBottom="20px">
-        {selectedTags.length ? (
+      {selectedTags.length ? (
+        <Box display="flex" flexWrap="wrap" gap="5px" marginBottom="20px">
           <Typography fontWeight={600} margin={"3px 4px 0 3px"}>
             Filter:
           </Typography>
-        ) : null}
-        {selectedTags.map((tag) => (
-          <Tag key={tag} name={tag} />
-        ))}
-      </Box>
+
+          {selectedTags.map((tag) => (
+            <Tag key={tag} name={tag} />
+          ))}
+        </Box>
+      ) : null}
       <Box
         display="grid"
         gridTemplateColumns="repeat(auto-fit, minmax(290px, 1fr))"
