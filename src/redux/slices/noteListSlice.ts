@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from "uuid";
 
 export interface Note {
   id: string;
@@ -19,9 +18,8 @@ const noteListSlice = createSlice({
   name: "noteList",
   initialState: initialState,
   reducers: {
-    addNote: (state, action: PayloadAction<{ content: string; tags: string[] }>) => {
-      const newNote = { ...action.payload, id: uuidv4() };
-      state.notes = [newNote, ...state.notes];
+    addNote: (state, action: PayloadAction<Note>) => {
+      state.notes = [action.payload, ...state.notes];
     },
     updateNote: (state, action: PayloadAction<Note>) => {
       const { id, content, tags } = action.payload;
@@ -35,9 +33,13 @@ const noteListSlice = createSlice({
     deleteNote: (state, action: PayloadAction<string>) => {
       state.notes = state.notes.filter((note) => note.id !== action.payload);
     },
+    setInitialNotes: (state, action: PayloadAction<Note[]>) => {
+      state.notes = action.payload;
+    },
   },
 });
 
-export const { addNote, updateNote, deleteNote } = noteListSlice.actions;
+export const { addNote, updateNote, deleteNote, setInitialNotes } =
+  noteListSlice.actions;
 
 export default noteListSlice.reducer;

@@ -1,17 +1,42 @@
-import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button, Box, Typography } from "@mui/material";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  Button,
+  Box,
+  Typography,
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { changeNoteEditorContent, setNoteId, toggleNoteEditorVisibility } from "../redux/slices/noteEditorSlice";
+import {
+  changeNoteEditorContent,
+  setNoteId,
+  toggleNoteEditorVisibility,
+} from "../redux/slices/noteEditorSlice";
 import { useEffect, useRef, useState } from "react";
 import { addNote, updateNote } from "../redux/slices/noteListSlice";
+import Tag from "./Tag";
+import { v4 as uuidv4 } from "uuid";
 
 export default function NoteEditor() {
   const dispatch = useDispatch();
-  const { isVisible, content, tags, noteId } = useSelector((state: RootState) => state.noteEditor);
+  const { isVisible, content, tags, noteId } = useSelector(
+    (state: RootState) => state.noteEditor
+  );
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [isChanged, setIsChanged] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+
+  const onInputChange = () => {
+    setIsChanged(false);
+    dispatch(changeNoteEditorContent(inputRef.current?.value || ""));
+  };
+
+  const isInputValid = () =>
+    isChanged && inputRef.current?.value.trim() === "" ? true : false;
 
   const onHide = () => {
     dispatch(toggleNoteEditorVisibility());
@@ -22,13 +47,13 @@ export default function NoteEditor() {
       const newNote = {
         content: inputRef.current?.value,
         tags: tags,
-        id: noteId ? noteId : "",
+        id: noteId ? noteId : uuidv4(),
       };
       const action = noteId ? updateNote : addNote;
       dispatch(action(newNote));
       dispatch(setNoteId(""));
       dispatch(changeNoteEditorContent(""));
-      dispatch(toggleNoteEditorVisibility());
+      onHide();
     } else {
       setIsChanged(true);
       inputRef.current?.focus();
@@ -38,15 +63,8 @@ export default function NoteEditor() {
   const onCancel = () => {
     dispatch(changeNoteEditorContent(""));
     dispatch(setNoteId(""));
-    dispatch(toggleNoteEditorVisibility());
+    onHide();
   };
-
-  const onInputChange = () => {
-    setIsChanged(false);
-    dispatch(changeNoteEditorContent(inputRef.current?.value || ""));
-  };
-
-  const isInputValid = () => (isChanged && inputRef.current?.value.trim() === "" ? true : false);
 
   useEffect(() => {
     isVisible ? setIsFocused(true) : setIsFocused(false);
@@ -61,32 +79,37 @@ export default function NoteEditor() {
   }, [isFocused]);
 
   return (
-    <Dialog onClose={onHide} open={isVisible} PaperProps={{ sx: { width: "100%" } }}>
+    <Dialog
+      onClose={onHide}
+      open={isVisible}
+      PaperProps={{ sx: { width: "100%", margin: "30px 20px" } }}
+    >
       <DialogTitle>Note Editor</DialogTitle>
-      <DialogContent>
+      <DialogContent sx={{ overflow: "auto" }}>
         <TextField
           inputRef={inputRef}
           id="outlined-multiline-static"
-          label="Multiline"
+          label="Type here"
           multiline
+          minRows={4}
           fullWidth
-          rows={4}
           defaultValue={content}
           error={isInputValid()}
-          helperText={isInputValid() ? "Please enter at least one character." : null}
+          helperText={
+            isInputValid() ? "Please enter at least one character." : null
+          }
           onBlur={() => setIsChanged(false)}
           onChange={onInputChange}
-          sx={{ marginTop: "5px" }}
+          sx={{
+            marginTop: "5px",
+          }}
         />
-        <Box sx={{ marginTop: "10px", display: "flex", flexWrap: "wrap", gap: "5px" }}>
-          {tags.length ? <Typography marginTop={0.5}>Tags:</Typography> : null}
-          {tags.map((tag, index) => (
-            <span
-              style={{ padding: "6px", fontSize: "15px", border: "2px solid var(--blue)", borderRadius: "14px" }}
-              key={index}
-            >
-              {tag}
-            </span>
+        <Box marginTop={"10px"} display={"flex"} flexWrap={"wrap"} gap={"5px"}>
+          {tags.length ? (
+            <Typography marginTop={"2px"}>Tags:</Typography>
+          ) : null}
+          {tags.map((tag) => (
+            <Tag key={tag} name={tag} />
           ))}
         </Box>
       </DialogContent>

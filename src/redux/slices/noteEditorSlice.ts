@@ -24,7 +24,7 @@ const noteEditorSlice = createSlice({
     changeNoteEditorContent: (state, action: PayloadAction<string>) => {
       state.content = action.payload;
       const tags = action.payload.match(/#([^#\s]+)/g);
-      if (tags) state.tags = tags;
+      if (tags) state.tags = Array.from(new Set(tags));
       else state.tags = [];
     },
     setNoteId: (state, action: PayloadAction<string>) => {

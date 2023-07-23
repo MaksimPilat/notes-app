@@ -6,7 +6,7 @@ import { deleteNote, Note as NoteType } from "../redux/slices/noteListSlice";
 import { changeNoteEditorContent, setNoteId, toggleNoteEditorVisibility } from "../redux/slices/noteEditorSlice";
 import HighlightTags from "./HighlightTags";
 
-export default function Note({ id, content, tags }: NoteType) {
+export default function Note({ id, content }: NoteType) {
   const dispatch = useDispatch();
 
   const onEdit = () => {

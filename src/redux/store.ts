@@ -1,17 +1,25 @@
-import { configureStore } from "@reduxjs/toolkit";
+import {
+  combineReducers,
+  configureStore,
+  getDefaultMiddleware,
+} from "@reduxjs/toolkit";
 import notesListReducer from "./slices/noteListSlice";
 import noteEditorReducer from "./slices/noteEditorSlice";
-//import tagFilterReducer from "./slices/tagFilterSlice";
+import tagFilterReducer from "./slices/tagFilterSlice";
+import indexedDBMiddleware from "./middleware/indexedDBMiddleware";
 
-export const store = configureStore({
-  reducer: {
-    notesList: notesListReducer,
-    noteEditor: noteEditorReducer,
-    //tagFilter: tagFilterReducer,
-  },
+const rootReducer = combineReducers({
+  notesList: notesListReducer,
+  noteEditor: noteEditorReducer,
+  tagFilter: tagFilterReducer,
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: [...getDefaultMiddleware(), indexedDBMiddleware],
+});
+
+export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
 
 export default store;
