@@ -31,7 +31,6 @@ export default function NoteList() {
           <Typography fontWeight={600} margin={"3px 4px 0 3px"}>
             Filter:
           </Typography>
-
           {selectedTags.map((tag) => (
             <Tag key={tag} name={tag} />
           ))}
