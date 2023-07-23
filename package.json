@@ -1,4 +1,5 @@
 {
+  "homepage": "https://maksimpilat.github.io/notes-app-react-reduxtoolkit-typescript",
   "name": "notes-app",
   "version": "0.1.0",
   "private": true,
@@ -18,6 +19,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -45,6 +48,7 @@
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/react-redux": "^7.1.25",
-    "@types/uuid": "^9.0.2"
+    "@types/uuid": "^9.0.2",
+    "gh-pages": "^5.0.0"
   }
 }
