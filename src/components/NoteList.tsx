@@ -28,7 +28,9 @@ export default function NoteList() {
     <Box sx={{ marginTop: "30px" }}>
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
         {selectedTags.length ? (
-          <Typography margin={"3px 4px 0 0"}>Filter:</Typography>
+          <Typography fontWeight={600} margin={"3px 4px 0 3px"}>
+            Filter:
+          </Typography>
         ) : null}
         {selectedTags.map((tag) => (
           <Tag key={tag} name={tag} />
