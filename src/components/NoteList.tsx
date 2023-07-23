@@ -9,6 +9,12 @@ export default function NoteList() {
   const { selectedTags } = useSelector((state: RootState) => state.tagFilter);
 
   const renderNotes = () => {
+    if (notes.length === 0)
+      return (
+        <Typography textAlign={"center"} color={"GrayText"}>
+          You don't have any notes yet.
+        </Typography>
+      );
     if (selectedTags.length === 0) {
       return notes.map((note) => <Note key={note.id} {...note} />);
     }
@@ -22,7 +28,7 @@ export default function NoteList() {
     <Box sx={{ marginTop: "30px" }}>
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
         {selectedTags.length ? (
-          <Typography marginTop={0.5}>Filter:</Typography>
+          <Typography margin={"3px 4px 0 0"}>Filter:</Typography>
         ) : null}
         {selectedTags.map((tag) => (
           <Tag key={tag} name={tag} />

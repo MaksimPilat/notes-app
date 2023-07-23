@@ -10,6 +10,7 @@ export default function Tag({ name }: Props) {
         fontSize: "15px",
         border: "1px solid var(--blue)",
         borderRadius: "14px",
+        color: "var(--blue)",
       }}
     >
       {name}

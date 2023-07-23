@@ -106,7 +106,7 @@ export default function NoteEditor() {
         />
         <Box marginTop={"10px"} display={"flex"} flexWrap={"wrap"} gap={"5px"}>
           {tags.length ? (
-            <Typography marginTop={"2px"}>Tags:</Typography>
+            <Typography margin={"2px 4px 0 0"}>Tags:</Typography>
           ) : null}
           {tags.map((tag) => (
             <Tag key={tag} name={tag} />

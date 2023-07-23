@@ -70,6 +70,7 @@ export default function TagFilter() {
   };
 
   const onCancel = () => {
+    setSelectedTags(reduxSelectedTags);
     onHide();
   };
 
