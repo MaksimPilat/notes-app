@@ -41,7 +41,6 @@ export default function NoteList() {
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))",
           gap: "20px",
-          marginTop: "20px",
         }}
       >
         {renderNotes()}
