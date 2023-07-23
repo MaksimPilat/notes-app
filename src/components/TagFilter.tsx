@@ -88,7 +88,7 @@ export default function TagFilter() {
     >
       <DialogTitle>Tag Filter</DialogTitle>
       <DialogContent>
-        <Box display={"flex"} gap={"10px"}>
+        <Box display="flex" gap="10px">
           {tags.map((tag) => (
             <FormControlLabel
               key={tag}
@@ -117,7 +117,7 @@ export default function TagFilter() {
         <Button onClick={onClear} variant="outlined" color="error">
           Clear
         </Button>
-        <Box sx={{ display: "flex", gap: "8px" }}>
+        <Box display="flex" gap="8px">
           <Button onClick={onCancel} variant="outlined">
             Cancel
           </Button>

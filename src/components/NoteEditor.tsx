@@ -104,7 +104,7 @@ export default function NoteEditor() {
             marginTop: "5px",
           }}
         />
-        <Box marginTop={"10px"} display={"flex"} flexWrap={"wrap"} gap={"5px"}>
+        <Box marginTop="10px" display="flex" flexWrap="wrap" gap="5px">
           {tags.length ? (
             <Typography margin={"2px 4px 0 0"}>Tags:</Typography>
           ) : null}

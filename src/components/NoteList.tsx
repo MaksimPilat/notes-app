@@ -25,8 +25,8 @@ export default function NoteList() {
   };
 
   return (
-    <Box sx={{ marginTop: "30px" }}>
-      <Box sx={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+    <Box marginTop="30px">
+      <Box display="flex" flexWrap="wrap" gap="5px" marginBottom="20px">
         {selectedTags.length ? (
           <Typography fontWeight={600} margin={"3px 4px 0 3px"}>
             Filter:
@@ -37,11 +37,9 @@ export default function NoteList() {
         ))}
       </Box>
       <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))",
-          gap: "20px",
-        }}
+        display="grid"
+        gridTemplateColumns="repeat(auto-fit, minmax(290px, 1fr))"
+        gap="20px"
       >
         {renderNotes()}
       </Box>
