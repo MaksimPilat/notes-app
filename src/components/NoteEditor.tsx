@@ -48,6 +48,7 @@ export default function NoteEditor() {
         content: inputRef.current?.value,
         tags: tags,
         id: noteId ? noteId : uuidv4(),
+        timestamp: Date.now(),
       };
       const action = noteId ? updateNote : addNote;
       dispatch(action(newNote));

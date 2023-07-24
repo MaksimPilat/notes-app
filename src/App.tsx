@@ -14,7 +14,9 @@ const App: React.FC = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        dispatch(setInitialNotes(await getNotesFromIndexedDB()));
+        const notesFromIndexedDB = await getNotesFromIndexedDB();
+        notesFromIndexedDB.sort((a, b) => a.timestamp - b.timestamp);
+        dispatch(setInitialNotes(notesFromIndexedDB));
       } catch (error) {
         console.error("Error fetching notes from IndexedDB:", error);
       }
