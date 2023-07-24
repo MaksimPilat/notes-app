@@ -34,7 +34,7 @@ const noteListSlice = createSlice({
       state.notes = state.notes.filter((note) => note.id !== action.payload);
     },
     setInitialNotes: (state, action: PayloadAction<Note[]>) => {
-      state.notes = action.payload;
+      state.notes = action.payload.reverse();
     },
   },
 });
