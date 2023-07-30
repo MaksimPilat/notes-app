@@ -10,7 +10,6 @@
     "@mui/material": "^5.14.1",
     "@reduxjs/toolkit": "^1.9.5",
     "react": "^18.2.0",
-    "react-app-rewired": "^2.2.1",
     "react-contenteditable": "^3.3.7",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.1",
@@ -50,7 +49,9 @@
     "@types/react-dom": "^18.2.7",
     "@types/react-redux": "^7.1.25",
     "@types/uuid": "^9.0.2",
-    "gh-pages": "^5.0.0"
+    "customize-cra": "^1.0.0",
+    "gh-pages": "^5.0.0",
+    "react-app-rewired": "^2.2.1"
   },
   "_moduleAliases": {
     "@modules": "dist/redux",

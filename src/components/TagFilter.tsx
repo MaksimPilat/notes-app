@@ -9,14 +9,14 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@redux/store";
+import { RootState } from "../redux/store";
 import {
   toggleTagFilterVisibility,
   changeTagFilterTags,
   changeTagFilterSelectedTags,
-} from "@redux/slices/tagFilterSlice";
+} from "../redux/slices/tagFilterSlice";
 import { useEffect, useState } from "react";
-import { Note } from "@redux/slices/noteListSlice";
+import { Note } from "../redux/slices/noteListSlice";
 
 const getAllTags = (notes: Note[]) => {
   const tags: string[] = [];

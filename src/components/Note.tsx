@@ -1,9 +1,13 @@
 import { Box, Card } from "@mui/material";
-import { OptionMenu, HighlightTags } from "@components/index";
+import { OptionMenu, HighlightTags } from ".";
 import { Edit, Delete } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
-import { deleteNote, Note as NoteType } from "@redux/slices/noteListSlice";
-import { changeNoteEditorContent, setNoteId, toggleNoteEditorVisibility } from "@redux/slices/noteEditorSlice";
+import { deleteNote, Note as NoteType } from "../redux/slices/noteListSlice";
+import {
+  changeNoteEditorContent,
+  setNoteId,
+  toggleNoteEditorVisibility,
+} from "../redux/slices/noteEditorSlice";
 
 export default function Note({ id, content }: NoteType) {
   const dispatch = useDispatch();

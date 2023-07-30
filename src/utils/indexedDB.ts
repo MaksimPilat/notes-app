@@ -1,4 +1,4 @@
-import { Note } from "@redux/slices/noteListSlice";
+import { Note } from "../redux/slices/noteListSlice";
 
 const DB_NAME = "notesDB";
 const NOTES_STORE_NAME = "notes";

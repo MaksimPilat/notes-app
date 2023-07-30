@@ -10,14 +10,14 @@ import {
 } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@redux/store";
+import { RootState } from "../redux/store";
 import {
   changeNoteEditorContent,
   setNoteId,
   toggleNoteEditorVisibility,
-} from "@redux/slices/noteEditorSlice";
-import { addNote, updateNote } from "@redux/slices/noteListSlice";
-import { Tag } from "@components/index";
+} from "../redux/slices/noteEditorSlice";
+import { addNote, updateNote } from "../redux/slices/noteListSlice";
+import { Tag } from ".";
 import { v4 as uuidv4 } from "uuid";
 
 export default function NoteEditor() {
