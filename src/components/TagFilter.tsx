@@ -49,15 +49,13 @@ export default function TagFilter() {
     const selectedTag = event.target.value;
     const isSelected = selectedTags.includes(selectedTag);
 
+    let updatedSelectedTags;
     if (isSelected) {
-      const updatedSelectedTags = selectedTags.filter(
-        (tag) => tag !== selectedTag
-      );
-      setSelectedTags(updatedSelectedTags);
+      updatedSelectedTags = selectedTags.filter((tag) => tag !== selectedTag);
     } else {
-      const updatedSelectedTags = [...selectedTags, selectedTag];
-      setSelectedTags(updatedSelectedTags);
+      updatedSelectedTags = [...selectedTags, selectedTag];
     }
+    setSelectedTags(updatedSelectedTags);
   };
 
   const onHide = () => {
