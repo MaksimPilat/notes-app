@@ -1,8 +1,4 @@
-import {
-  combineReducers,
-  configureStore,
-  getDefaultMiddleware,
-} from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import notesListReducer from "./slices/noteListSlice";
 import noteEditorReducer from "./slices/noteEditorSlice";
 import tagFilterReducer from "./slices/tagFilterSlice";
@@ -16,7 +12,7 @@ const rootReducer = combineReducers({
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: [...getDefaultMiddleware(), indexedDBMiddleware],
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(indexedDBMiddleware)
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
