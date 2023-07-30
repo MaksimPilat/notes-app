@@ -1,12 +1,9 @@
 import "./App.css";
-import NoteList from "./components/NoteList";
-import Bar from "./components/Bar";
-import NoteEditor from "./components/NoteEditor";
-import TagFilter from "./components/TagFilter";
+import { NoteList, Bar, NoteEditor, TagFilter } from "@components/index";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setInitialNotes } from "./redux/slices/noteListSlice";
-import { getNotesFromIndexedDB } from "./utils/indexedDB";
+import { setInitialNotes } from "@redux/slices/noteListSlice";
+import { getNotesFromIndexedDB } from "@utils/indexedDB";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();

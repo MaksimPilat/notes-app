@@ -1,8 +1,8 @@
 import { AppBar, Box, Toolbar, Typography, IconButton } from "@mui/material";
 import { Tune, Add } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
-import { toggleNoteEditorVisibility } from "../redux/slices/noteEditorSlice";
-import { toggleTagFilterVisibility } from "../redux/slices/tagFilterSlice";
+import { toggleNoteEditorVisibility } from "@redux/slices/noteEditorSlice";
+import { toggleTagFilterVisibility } from "@redux/slices/tagFilterSlice";
 
 export default function Bar() {
   const dispatch = useDispatch();

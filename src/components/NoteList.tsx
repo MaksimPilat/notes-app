@@ -1,8 +1,7 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { RootState } from "@redux/store";
 import { Box, Typography } from "@mui/material";
-import Note from "./Note";
-import Tag from "./Tag";
+import { Tag, Note } from "@components/index";
 
 export default function NoteList() {
   const { notes } = useSelector((state: RootState) => state.notesList);

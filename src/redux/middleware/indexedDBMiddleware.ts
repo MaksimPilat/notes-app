@@ -5,38 +5,38 @@ import {
   updateNoteInIndexedDB,
   deleteNoteFromIndexedDB,
   addNoteToIndexedDB,
-} from "../../utils/indexedDB";
+} from "@utils/indexedDB";
 
 const indexedDBMiddleware: Middleware<{}, RootState, Dispatch> =
   (store: MiddlewareAPI<Dispatch, RootState>) =>
-  (next: Dispatch) =>
-  async (action) => {
-    const result = next(action);
+    (next: Dispatch) =>
+      async (action) => {
+        const result = next(action);
 
-    switch (action.type) {
-      case updateNote.type:
-        const state = store.getState();
-        const updatedNote: Note | undefined = state.notesList.notes.find(
-          (note) => note.id === action.payload.id
-        );
-        if (updatedNote) await updateNoteInIndexedDB(updatedNote);
-        break;
+        switch (action.type) {
+          case updateNote.type:
+            const state = store.getState();
+            const updatedNote: Note | undefined = state.notesList.notes.find(
+              (note) => note.id === action.payload.id
+            );
+            if (updatedNote) await updateNoteInIndexedDB(updatedNote);
+            break;
 
-      case deleteNote.type:
-        const deletedNoteId = action.payload;
-        await deleteNoteFromIndexedDB(deletedNoteId);
-        break;
+          case deleteNote.type:
+            const deletedNoteId = action.payload;
+            await deleteNoteFromIndexedDB(deletedNoteId);
+            break;
 
-      case addNote.type:
-        const newNote = action.payload;
-        await addNoteToIndexedDB(newNote);
-        break;
+          case addNote.type:
+            const newNote = action.payload;
+            await addNoteToIndexedDB(newNote);
+            break;
 
-      default:
-        break;
-    }
+          default:
+            break;
+        }
 
-    return result;
-  };
+        return result;
+      };
 
 export default indexedDBMiddleware;
